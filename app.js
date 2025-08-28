@@ -1,11 +1,22 @@
-let titulo = document.querySelector('h1');
-titulo.innerHTML = "Jogo do Número Secreto";
+/*let titulo = document.querySelector('h1');
+titulo.innerHTML = 'Jogo do Número Secreto';
+
+let mensagem = document.querySelector('p');
+mensagem.innerHTML = 'Escolha um número de 1 a 100';*/
 
 let chute = 0;
 let tentativa = 1;
 let numeroSecreto = parseInt(Math.random()* 100 + 1);
 console.log("Número secreto: " + numeroSecreto);
 
+exibirTextoNaTela('h1', 'Jogo do número secreto');
+exibirTextoNaTela('p', 'Adivinhe o número de 0 a 100');
+
+function exibirTextoNaTela(tag, texto)
+{
+    let campo = document.querySelector(tag);
+    campo.innerHTML = texto;
+}
 
 function verificarChute()
 {
@@ -13,17 +24,15 @@ function verificarChute()
 
     if (chute == numeroSecreto)
     {
-        alert("Parabéns, você acertou");
-        alert("Tentativas: " + tentativa);
-        document.getElementById('reiniciar').disabled = false;
+        finlizacaoGameVitoria();
     } 
     else if(chute > numeroSecreto)
     {
-        alert("O número secreto é menor");
+        mensagemMenor();
     }
     else if(chute < numeroSecreto)
     {
-        alert("O número secreto é maior"); 
+        mensagemMaior();
     }
     else
     {
@@ -41,3 +50,35 @@ function reiniciarjogo()
     document.getElementById('chute').value = "";
     tentativa = 0;
 }
+
+
+function mensagemMaior() {
+    alert("O número secreto é maior");
+}
+
+function mensagemMenor() {
+    alert("O número secreto é menor");
+}
+
+function finlizacaoGameVitoria() {
+    alert("Parabéns, você acertou!");
+    alert("Tentativas: " + tentativa);
+    document.getElementById('reiniciar').disabled = false;
+}
+
+
+/*function mostrarMensagem(tipo) {
+    switch(tipo) {
+        case 'maior':
+            mensagem.innerHTML = "O número secreto é maior";
+            break;
+        case 'menor':
+            mensagem.innerHTML = "O número secreto é menor";
+            break;
+        case 'acertou':
+            mensagem.innerHTML = "Parabéns, você acertou!";
+            break;
+        default:
+            mensagem.innerHTML = "Erro";
+    }
+} */
