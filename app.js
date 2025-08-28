@@ -1,3 +1,4 @@
+let listaDenumerosSorteado = [];
 let chute = 0;
 let tentativa = 1;
 
@@ -40,9 +41,11 @@ function verificarChute()
 
 function reiniciarjogo()
 {
-    numeroSecreto = parseInt(Math.random()* 100 + 1);
-    console.log("Novo número secreto: " + numeroSecreto);
+    listaDenumerosSorteado.push(numeroSecreto);
 
+    numeroSecreto = gerarNumeroAleatorio();
+
+    console.log("Novo número secreto: " + numeroSecreto);
     document.getElementById('reiniciar').disabled = true;
     document.getElementById('chute').value = "";
 
@@ -68,8 +71,17 @@ function finlizacaoGameVitoria() {
 }
 
 function gerarNumeroAleatorio()
-{
-    return parseInt(Math.random()* 100 + 1);
+{  
+    let novoNumero = parseInt(Math.random() * 100 + 1);
+
+    if(listaDenumerosSorteado.includes(novoNumero))
+    {
+        return gerarNumeroAleatorio()
+    }
+    else
+    {
+        return novoNumero;
+    }
 }
 
 
