@@ -1,12 +1,8 @@
-/*let titulo = document.querySelector('h1');
-titulo.innerHTML = 'Jogo do Número Secreto';
-
-let mensagem = document.querySelector('p');
-mensagem.innerHTML = 'Escolha um número de 1 a 100';*/
-
 let chute = 0;
 let tentativa = 1;
-let numeroSecreto = parseInt(Math.random()* 100 + 1);
+
+let numeroSecreto = gerarNumeroAleatorio();
+
 console.log("Número secreto: " + numeroSecreto);
 
 exibirTextoNaTela('h1', 'Jogo do número secreto');
@@ -46,9 +42,14 @@ function reiniciarjogo()
 {
     numeroSecreto = parseInt(Math.random()* 100 + 1);
     console.log("Novo número secreto: " + numeroSecreto);
+
     document.getElementById('reiniciar').disabled = true;
     document.getElementById('chute').value = "";
-    tentativa = 0;
+
+    tentativa = 1;
+
+    exibirTextoNaTela('h1', 'Jogo do número secreto');
+    exibirTextoNaTela('p', 'Adivinhe o número de 0 a 100');
 }
 
 
@@ -61,9 +62,14 @@ function mensagemMenor() {
 }
 
 function finlizacaoGameVitoria() {
-    alert("Parabéns, você acertou!");
-    alert("Tentativas: " + tentativa);
+    exibirTextoNaTela('h1', "Acertou");
+    exibirTextoNaTela('p', `Parabéns, você acertou o número secreto: ${numeroSecreto}\n Tentativas: ${tentativa}`);
     document.getElementById('reiniciar').disabled = false;
+}
+
+function gerarNumeroAleatorio()
+{
+    return parseInt(Math.random()* 100 + 1);
 }
 
 
@@ -81,4 +87,11 @@ function finlizacaoGameVitoria() {
         default:
             mensagem.innerHTML = "Erro";
     }
-} */
+} 
+    
+let titulo = document.querySelector('h1');
+titulo.innerHTML = 'Jogo do Número Secreto';
+
+let mensagem = document.querySelector('p');
+mensagem.innerHTML = 'Escolha um número de 1 a 100';*/
+
