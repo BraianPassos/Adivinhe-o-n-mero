@@ -1,7 +1,7 @@
 let listaDenumerosSorteado = [];
 let chute = 0;
 let tentativa = 1;
-
+let limiteDeNumerosDoArray = 100;
 let numeroSecreto = gerarNumeroAleatorio();
 
 console.log("Número secreto: " + numeroSecreto);
@@ -13,6 +13,15 @@ function exibirTextoNaTela(tag, texto)
 {
     let campo = document.querySelector(tag);
     campo.innerHTML = texto;
+    
+    if ('speechSynthesis' in window) {
+        let utterance = new SpeechSynthesisUtterance(texto);
+        utterance.lang = 'pt-BR'; 
+        utterance.rate = 1.2; 
+        window.speechSynthesis.speak(utterance); 
+    } else {
+        console.log("Web Speech API não suportada neste navegador.");
+    }
 }
 
 function verificarChute()
@@ -41,8 +50,8 @@ function verificarChute()
 
 function reiniciarjogo()
 {
-    listaDenumerosSorteado.push(numeroSecreto);
 
+    
     numeroSecreto = gerarNumeroAleatorio();
 
     console.log("Novo número secreto: " + numeroSecreto);
@@ -72,7 +81,13 @@ function finlizacaoGameVitoria() {
 
 function gerarNumeroAleatorio()
 {  
-    let novoNumero = parseInt(Math.random() * 100 + 1);
+    let novoNumero = parseInt(Math.random() * limiteDeNumerosDoArray + 1);
+    let quantidadeDeElementosNaLista = listaDenumerosSorteado.length;
+
+    if(quantidadeDeElementosNaLista == limiteDeNumerosDoArray)
+    {
+        listaDenumerosSorteado = [];
+    }
 
     if(listaDenumerosSorteado.includes(novoNumero))
     {
@@ -80,6 +95,8 @@ function gerarNumeroAleatorio()
     }
     else
     {
+        listaDenumerosSorteado.push(novoNumero);
+        console.log(listaDenumerosSorteado);
         return novoNumero;
     }
 }
