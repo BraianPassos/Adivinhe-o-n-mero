@@ -100,27 +100,3 @@ function gerarNumeroAleatorio()
         return novoNumero;
     }
 }
-
-
-/*function mostrarMensagem(tipo) {
-    switch(tipo) {
-        case 'maior':
-            mensagem.innerHTML = "O número secreto é maior";
-            break;
-        case 'menor':
-            mensagem.innerHTML = "O número secreto é menor";
-            break;
-        case 'acertou':
-            mensagem.innerHTML = "Parabéns, você acertou!";
-            break;
-        default:
-            mensagem.innerHTML = "Erro";
-    }
-} 
-    
-let titulo = document.querySelector('h1');
-titulo.innerHTML = 'Jogo do Número Secreto';
-
-let mensagem = document.querySelector('p');
-mensagem.innerHTML = 'Escolha um número de 1 a 100';*/
-
